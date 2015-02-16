@@ -40,14 +40,14 @@ class Users {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    users_id = ?, users_username = ?, users_password = ?, users_type = ?";
+                     users_username = ?, users_password = ?, users_type = ?";
 
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(1, $this->user_id);
-        $stmt->bindParam(2, $this->username);
-        $stmt->bindParam(3, $this->password);
-        $stmt->bindParam(4, $this->user_type);
+        //$stmt->bindParam(1, $this->user_id);
+        $stmt->bindParam(1, $this->username);
+        $stmt->bindParam(2, $this->password);
+        $stmt->bindParam(3, $this->user_type);
 
         if ($stmt->execute()) {
             return true;
@@ -68,6 +68,25 @@ class Users {
         echo '<br>Execute success';
 
         return $stmt;
+    }
+    function findUser() {
+        $query = "SELECT
+            *
+            FROM
+            " . $this->table_name .
+        " WHERE"
+                . " users_username = ? AND users_password = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->username);
+        $stmt->bindParam(2, $this->password);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->username = $row['users_username'];
+        $this->password = $row['users_password'];
+        $this->user_id = $row['users_id'];
+        $this->user_type = $row['user_type'];
     }
 
 }
