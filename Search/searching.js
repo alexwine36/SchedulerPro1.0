@@ -4,14 +4,10 @@
  * and open the template in the editor.
  */
 
-
-
-
-
 $(document).ready(function () {
-    $('.searching').hide();
+    
     $('.search').click(function () {
         $('.searching').slideToggle();
     });
-    
+    $('.searching').hide();
 });

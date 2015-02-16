@@ -7,6 +7,7 @@
  */
 
 $page_title = "Login";
+include_once 'Search/xml_update.php';
 include_once 'header.php';
 ?>
 

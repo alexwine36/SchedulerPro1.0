@@ -21,6 +21,7 @@ class Database {
 
         try {
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            //echo 'Database Success';
         } catch (PDOException $ex) {
             echo 'Connection error: ' . $ex->getMessage();
         }
@@ -28,3 +29,5 @@ class Database {
     }
 
 }
+
+?>

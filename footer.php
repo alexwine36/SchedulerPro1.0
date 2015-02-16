@@ -1,6 +1,7 @@
 </div>
 <!-- /container -->
-<?php echo "</div>";
+<?php 
+echo "</div>";
 ?>
 </body>
 </html>

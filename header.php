@@ -39,6 +39,7 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
         <script src="Search/searching.js"></script>
+
         <script>
             function showResult(str) {
                 if (str.length == 0) {
@@ -62,6 +63,8 @@
                 xmlhttp.send();
             }
         </script>
+        
+
     </head>
     <body>
 
@@ -100,6 +103,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Update Monthly Report</a></li>
                                 <li><a href="#">Update iCal</a></li>
+
                             </ul>
                         </li>
                     </ul>
@@ -128,7 +132,7 @@
         </div>
         <div class="container">
             <?php
-            // show page header
+// show page header
             echo "<div class='page-header'>";
             echo "<h1>{$page_title}";
 
