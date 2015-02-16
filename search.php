@@ -8,19 +8,20 @@
 $page_title = "Search";
 include_once 'header.php';
 ?>
+<div class="searching">
+    <form>
+        <table class='table table-hover table-responsive table-bordered'>
+            <tr>
+                <td>Search</td>
+                <td>
+                    <input type="text" class='form-control' onkeyup="showResult(this.value)">
+                    <div id="livesearch"></div>
+                </td>
+            </tr>
 
-<form>
-    <table class='table table-hover table-responsive table-bordered'>
-        <tr>
-            <td>Search</td>
-            <td>
-                <input type="text" class='form-control' onkeyup="showResult(this.value)">
-                <div id="livesearch"></div>
-            </td>
-        </tr>
-
-    </table>
-</form>
+        </table>
+    </form>
+</div>
 
 <?php
 include_once 'footer.php';

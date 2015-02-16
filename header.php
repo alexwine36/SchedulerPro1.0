@@ -37,7 +37,8 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <!-- Latest compiled and minified JavaScript -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        
+
+        <script src="Search/searching.js"></script>
     </head>
     <body>
 
@@ -71,10 +72,16 @@
                                 <li><a href="#">View Schedule</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Page 3</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Update <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Update Monthly Report</a></li>
+                                <li><a href="#">Update iCal</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="search.php"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+                        <li><a href="#" class="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>
                         <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
@@ -84,6 +91,18 @@
 
         <!-- container -->
         <div class="container">
+            <div class="searching">
+                <form>
+                    <table class='table table-hover table-responsive table-bordered'>
+                        <tr>
+                            <td>
+                                <input type="text" class='form-control' onkeyup="showResult(this.value)">
+                                <div id="livesearch"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
 
             <?php
             // show page header
