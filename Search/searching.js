@@ -5,10 +5,13 @@
  */
 
 
-$(document).ready(function() {
+
+
+
+$(document).ready(function () {
     $('.searching').hide();
-    
-    $('.search').click(function(){
+    $('.search').click(function () {
         $('.searching').slideToggle();
     });
+    
 });

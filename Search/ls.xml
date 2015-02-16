@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<pages>
+    <item>
+        <name>First Last 5050203456 Email@email.com</name>
+        <description>Contact.php</description>
+        <id>1</id>
+    </item>
+    <item>
+        <name>First2   </name>
+        <description>Contact.php</description>
+        <id>2</id>
+    </item>
+    <item>
+        <name>Event Name 1</name>
+        <description>ScheduleRecurring.php</description>
+        <id>1</id>
+    </item>
+    <item>
+        <name>Event Name 2</name>
+        <description>ScheduleRecurring.php</description>
+        <id>2</id>
+    </item>
+    <item>
+        <name>Event Name 3</name>
+        <description>ScheduleRecurring.php</description>
+        <id>3</id>
+    </item>
+    <item>
+        <name>Room 1</name>
+        <description>Resource.php</description>
+        <id>1</id>
+    </item>
+</pages>

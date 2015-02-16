@@ -39,6 +39,29 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
         <script src="Search/searching.js"></script>
+        <script>
+            function showResult(str) {
+                if (str.length == 0) {
+                    document.getElementById("livesearch").innerHTML = "";
+                    document.getElementById("livesearch").style.border = "0px";
+                    return;
+                }
+                if (window.XMLHttpRequest) {
+// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {  // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("livesearch").innerHTML = xmlhttp.responseText;
+                        document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
+                    }
+                }
+                xmlhttp.open("GET", "Search/liveSearch.php?q=" + str, true);
+                xmlhttp.send();
+            }
+        </script>
     </head>
     <body>
 
@@ -81,7 +104,7 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" class="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+                        <li><a class="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>
                         <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
@@ -90,20 +113,20 @@
         </nav>
 
         <!-- container -->
-        <div class="container">
-            <div class="searching">
-                <form>
-                    <table class='table table-hover table-responsive table-bordered'>
-                        <tr>
-                            <td>
-                                <input type="text" class='form-control' onkeyup="showResult(this.value)">
-                                <div id="livesearch"></div>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
 
+        <div class="searching">
+            <form>
+                <table class='table table-hover table-responsive table-bordered'>
+                    <tr>
+                        <td>
+                            <input type="text" class='form-control' onkeyup="showResult(this.value)">
+                            <div id="livesearch"></div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="container">
             <?php
             // show page header
             echo "<div class='page-header'>";
