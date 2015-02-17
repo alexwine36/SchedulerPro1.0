@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,7 +15,7 @@ class ScheduleRecurring {
     public $id;
     public $name;
     public $description;
-    public $schedcat_id;
+    public $cat_id;
     public $contact_id;
     public $cost;
 
@@ -39,7 +39,7 @@ class ScheduleRecurring {
         $stmt->bindParam(1, $this->id);
         $stmt->bindParam(2, $this->name);
         $stmt->bindParam(3, $this->description);
-        $stmt->bindParam(4, $this->schedcat_id);
+        $stmt->bindParam(4, $this->cat_id);
         $stmt->bindParam(5, $this->contact_id);
         $stmt->bindParam(6, $this->cost);
 
@@ -50,6 +50,32 @@ class ScheduleRecurring {
             return false;
         }
     }
+
+    function createName() {
+        //write query
+        //echo $this->cat_id;
+        $query = "INSERT INTO
+                    " . $this->table_name . "
+                SET
+                    sch_rec_name = :recname, sch_rec_schedcat_id = :catid";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':recname', $this->name);
+        echo '<br><br>Recurring Name: '
+        . $this->name;
+        $stmt->bindParam(':catid', $this->cat_id);
+        echo '<br><br>Recurring Schedule Category ID: '
+        . $this->cat_id;
+        if ($stmt->execute()) {
+            
+            echo '<br>Execute success';
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function read() {
         //select all data
         $query = "SELECT

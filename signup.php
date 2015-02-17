@@ -68,8 +68,16 @@ if ($_POST) {
         <tr>
             <td><input type='email' name='email' placeholder="Email" class='form-control' ></td>
         </tr>
-        <tr>
+
+        <tr class="adminpass">
             <td><input type='password' name='adminpassword' placeholder="Administrator Password" class='form-control' ></td>
+        </tr>
+
+
+        <tr class="aphelp">
+            <td>
+                <h5><weak>If you do not have a password leave field blank</weak></h5>
+            </td>
         </tr>
 
         <tr>

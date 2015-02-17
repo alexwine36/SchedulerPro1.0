@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+ini_set('auto_detect_line_endings',TRUE);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -39,7 +44,7 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
         <script src="Search/searching.js"></script>
-        
+        <script src="jQueryFunc.js"></script>
 
         <script>
             function showResult(str) {
@@ -102,7 +107,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Update <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Update Monthly Report</a></li>
+                                <li><a href="update/csvUpdate.php">Update Monthly Report</a></li>
                                 <li><a href="#">Update iCal</a></li>
 
                             </ul>
