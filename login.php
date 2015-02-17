@@ -1,55 +1,65 @@
 <?php
-
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+session_start();
 
+if ($_SESSION['username']) {
+    //echo '<br>Username is set';
+    header('location: index.php');
+}
+?>
+<?php
 $page_title = "Login";
 //include_once 'Search/xml_update.php';
-include_once 'header.php';
-include_once 'includes/database.php';
-include_once 'objects/Users.php';
+/*
+ * if( $user->is_logged_in() ){    
+ *
+  header('Location: memberpage.php');
+  }
+ */
 
+
+
+include_once 'includes/database.php';
+include_once 'header.php';
+//include_once 'objects/Users.php';
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
+//Find Password
 
-// prepare product object
-$users = new Users($db);
+echo "<div class='right-button-margin'>";
+echo "<a href='forgotpass.php' class='btn btn-default pull-right'>Forgot Password</a>";
+echo "</div>";
 
-// set ID property of product to be edited
-$users->username = $name;
-$users->password = $password;
 
-// read the details of product to be edited
-$users->findUser();
-
-// if the form was submitted
 if ($_POST) {
 
-    // set product property values
-    $users->username = $_POST['name'];
-    $users->password = $_POST['password'];
-    /*$product->description = $_POST['description'];
-    $product->category_id = $_POST['category_id'];
-     * /
-     */
+    // instantiate product object
+    include_once 'objects/Users.php';
+    $newuser = new Users($db);
 
-    // update the product
-    if ($users->update()) {
+    // set product property values
+    $newuser->username = $_POST['username'];
+    $newuser->password = $_POST['password'];
+
+    // create the product
+    if ($newuser->findUser()) {
         echo "<div class=\"alert alert-success alert-dismissable\">";
         echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
-        echo "Product was updated.";
+        echo "Login successful.";
         echo "</div>";
+        
     }
 
-    // if unable to update the product, tell the user
+    // if unable to create the product, tell the user
     else {
         echo "<div class=\"alert alert-danger alert-dismissable\">";
         echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
-        echo "Unable to update product.";
+        echo "Unable to find login.";
         echo "</div>";
     }
 }
@@ -60,23 +70,19 @@ if ($_POST) {
     <table class='table table-hover table-responsive table-bordered'>
 
         <tr>
-            <td>Username</td>
-            <td><input type='text' name='name' class='form-control' required></td>
+            <td><input type='text' name='username' placeholder="User Name"class='form-control' required></td>
         </tr>
 
         <tr>
-            <td>Password</td>
-            <td><input type='password' name='password' class='form-control' required></td>
+            <td><input type='password' name='password' placeholder="Password" class='form-control' required></td>
         </tr>
         <tr>
-            <td></td>
             <td>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
             </td>
         </tr>
     </table>
 </form>
 <?php
 include_once 'footer.php';
-
 ?>

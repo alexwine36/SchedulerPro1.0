@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 alexanderwine
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
  */
 
 class Users {
+
     // database connection and table name
     private $conn;
     private $table_name = "Users";
@@ -26,6 +27,8 @@ class Users {
     public $username;
     public $password;
     public $user_type;
+    public $user_email;
+    public $user_active;
 
     public function __construct($db) {
         $this->conn = $db;
@@ -40,7 +43,7 @@ class Users {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                     users_username = ?, users_password = ?, users_type = ?";
+                     users_username = ?, users_password = ?, users_type = ?, users_email = ?";
 
         $stmt = $this->conn->prepare($query);
 
@@ -48,6 +51,7 @@ class Users {
         $stmt->bindParam(1, $this->username);
         $stmt->bindParam(2, $this->password);
         $stmt->bindParam(3, $this->user_type);
+        $stmt->bindParam(4, $this->user_email);
 
         if ($stmt->execute()) {
             return true;
@@ -55,40 +59,56 @@ class Users {
         } else {
             return false;
         }
+        //$this->conn = NULL;
     }
+
     function read() {
         //select all data
         $query = "SELECT
                     *
-                FROM
-                    " . $this->table_name;
+                FROM" . $this->table_name;
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         echo '<br>Execute success';
-
+        //$this->conn = null;
         return $stmt;
     }
+
     function findUser() {
+        echo '<br>Find User Started';
         $query = "SELECT
-            *
+                users_username, users_type
             FROM
-            " . $this->table_name .
-        " WHERE"
-                . " users_username = ? AND users_password = ?";
+                " . $this->table_name .
+                "
+            WHERE
+                users_username = :username AND users_password = :password
+            ";
+
+
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $this->username);
-        $stmt->bindParam(2, $this->password);
+        echo '<br>Statement Prepared';
+        $stmt->bindParam(':username', $this->username, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $this->password, PDO::PARAM_STR);
+        echo '<br>Statement Bound';
+
+
         $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $this->username = $row['users_username'];
-        $this->password = $row['users_password'];
-        $this->user_id = $row['users_id'];
-        $this->user_type = $row['user_type'];
+        echo '<br>Statement Ran';
+        $obj = $stmt->rowCount();
+        $result = $stmt->fetchObject();
+        //echo $obj->username;
+        if ($obj > 0) {
+            echo "<br>" . $obj;
+            echo "<br>" . $result->users_username;
+            $_SESSION['username'] = $result->users_username;
+            $_SESSION['type'] = $result->users_type;
+            echo '<br>';
+            print_r($_SESSION);
+            return true;
+        }
     }
-
 }
 
 ?>

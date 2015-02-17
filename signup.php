@@ -1,6 +1,5 @@
 <?php
-
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -10,12 +9,7 @@ $page_title = "Signup";
 include_once 'header.php';
 
 
-//Potential Home Button
-/*
-echo "<div class='right-button-margin'>";
-echo "<a href='index.php' class='btn btn-default pull-right'>Home</a>";
-echo "</div>";
-*/
+
 
 //Get database connection
 include_once 'includes/database.php';
@@ -30,16 +24,19 @@ if ($_POST) {
     $users = new Users($db);
 
     // set product property values
-    $users->username = $_POST['name'];
+    $users->username = $_POST['username'];
     $users->password = $_POST['password'];
     $users->user_type = $_POST['adminpassword'];
-    //$product->category_id = $_POST['category_id'];
+    $users->user_email = $_POST['email'];
 
     // create the product
     if ($users->create()) {
         echo "<div class=\"alert alert-success alert-dismissable\">";
         echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
         echo "User was created.";
+        echo "<div class='right-button-margin'>";
+        echo "<a href='login.php' class='btn btn-default pull-right'>Login</a>";
+        echo "</div>";
         echo "</div>";
     }
 
@@ -59,27 +56,25 @@ if ($_POST) {
     <table class='table table-hover table-responsive table-bordered'>
 
         <tr>
-            <td>Username</td>
-            <td><input type='text' name='name' class='form-control' required></td>
+            <td><input type='text' name='username' placeholder="User Name" class='form-control' required></td>
         </tr>
 
         <tr>
-            <td>Password</td>
-            <td><input type='password' name='password' class='form-control' required></td>
+            <td><input type='password' name='password' placeholder="Password" class='form-control' required></td>
         </tr>
         <tr>
-            <td>Confirm Password</td>
-            <td><input type="password" name="password2" class="form-control" required</td>
+            <td><input type="password" name="password2" placeholder="Password Confirmation" class="form-control" required</td>
         </tr>
         <tr>
-            <td>Administrator Password</td>
-            <td><input type='password' name='adminpassword' class='form-control' ></td>
+            <td><input type='email' name='email' placeholder="Email" class='form-control' ></td>
         </tr>
-        
         <tr>
-            <td></td>
+            <td><input type='password' name='adminpassword' placeholder="Administrator Password" class='form-control' ></td>
+        </tr>
+
+        <tr>
             <td>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" align="right" class="btn btn-primary btn-block">Login</button>
             </td>
         </tr>
     </table>

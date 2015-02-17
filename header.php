@@ -39,6 +39,7 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
         <script src="Search/searching.js"></script>
+        
 
         <script>
             function showResult(str) {
@@ -63,7 +64,7 @@
                 xmlhttp.send();
             }
         </script>
-        
+
 
     </head>
     <body>
@@ -110,7 +111,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="search"><span class="glyphicon glyphicon-search"></span> Search</a></li>
                         <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <?php
+                        if ($_SESSION['username']) {
+                            echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
+                        } else {
+                            echo '<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
