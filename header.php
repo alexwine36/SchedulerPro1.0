@@ -108,7 +108,7 @@ ini_set('auto_detect_line_endings',TRUE);
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Update <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="update/csvUpdate.php">Update Monthly Report</a></li>
-                                <li><a href="#">Update iCal</a></li>
+                                <li><a href="update_ics.php">Update iCal</a></li>
 
                             </ul>
                         </li>

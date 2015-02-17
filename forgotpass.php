@@ -20,7 +20,7 @@
 $page_title = 'Find Password';
 include_once 'header.php';
 ?>
-
+<h2>Not yet functional</h2>
 <?php
 include_once 'footer.php';
 ?>
