@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once 'objects/Resource.php';
+include_once '../objects/Resource.php';
 
 
 

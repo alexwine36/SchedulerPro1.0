@@ -109,7 +109,7 @@ ini_set('auto_detect_line_endings',TRUE);
                             <ul class="dropdown-menu">
                                 <li><a href="update/csvUpdate.php">Update Monthly Report</a></li>
                                 <li><a href="update_ics.php">Update iCal</a></li>
-
+                                <li><a href="Search/xml_update.php">Update LiveSearch</a></li>
                             </ul>
                         </li>
                     </ul>

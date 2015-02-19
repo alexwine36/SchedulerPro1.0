@@ -16,11 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-if ($lsvar != 1) {
-//include_once 'header.php';
-    $lsvar = 1;
 
-    include_once 'includes/database.php';
+
+    include_once '../includes/database.php';
 //echo "Database Included <br>";
     $database = new Database();
 //echo "New Database Connection Created<br>";
@@ -29,20 +27,23 @@ if ($lsvar != 1) {
 
 
 
-    $myfile = fopen('Search/ls.xml', 'w') or die("Unable to open file!");
+    $myfile = fopen('ls.xml', 'w') or die("Unable to open file!");
     $txt = "<?xml version='1.0' encoding='UTF-8'?>"
             . "<pages>";
 
-    include_once 'Search/dataRef/ContactUpdate.php';
+    include_once 'dataRef/ContactUpdate.php';
 //echo 'Contact Update Success';
-    include_once 'Search/dataRef/ScheduleRecurringUpdate.php';
+    include_once 'dataRef/ScheduleRecurringUpdate.php';
 
-    include_once 'Search/dataRef/ResourceUpdate.php';
+    include_once 'dataRef/ResourceUpdate.php';
 
     $txt .= "</pages>";
 
     fwrite($myfile, $txt);
     fclose($myfile);
 //include_once 'footer.php';
-}
+
+?>
+<?php
+header('location: ../index.php');
 ?>

@@ -18,7 +18,7 @@
  */
 
 //echo '<br>Contact Update Accessed';
-include_once 'objects/Contact.php';
+include_once '../objects/Contact.php';
 //echo '<br>File included';
 $contact = new Contact($db);
 
