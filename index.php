@@ -18,7 +18,7 @@ session_start();
 
 if ($_SESSION['username']) {
     
-    $page_title = 'Hello ' . $_SESSION['username'] . "!";
+    $page_title = 'Hello ' . ucfirst($_SESSION['username']) . "!";
 }
  else {
     header('location: login.php');

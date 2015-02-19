@@ -25,9 +25,12 @@ ini_set('auto_detect_line_endings',TRUE);
             }
         </style>
 
+        
+        <link rel="stylesheet" href="printStyle.css" media="print">
+        
         <!-- Bootstrap -->
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="screen">
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -19,7 +19,7 @@
 
 //echo '<br>Contact Update Accessed';
 include_once '../objects/Contact.php';
-//echo '<br>File included';
+echo '<br>File included';
 $contact = new Contact($db);
 
 $stmtcon = $contact->read();

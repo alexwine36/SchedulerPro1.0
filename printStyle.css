@@ -1,0 +1,78 @@
+/*
+Copyright (C) 2015 alexanderwine
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* 
+    Created on : Feb 19, 2015, 7:29:00 AM
+    Author     : alexanderwine
+*/
+
+@media print {
+    header, nav, footer {
+        display: none;
+    }
+
+    @page {
+        margin: 1cm;
+    }
+    h1 {
+        color: graytext;
+    }
+    body {
+        font: 12pt Georgia, "Times New Roman", Times, serif;
+        line-height: 1.3;
+    }
+    h1 {
+        font-size: 24pt;
+    }
+
+    h2 {
+        font-size: 14pt;
+        margin-top: 25px;
+    }
+
+    aside h2 {
+        font-size: 18pt;
+
+    }
+    blockquote, ul {
+        margin: 0;
+    }
+    ul {
+        list-style: none;
+    }
+    li {
+        content: "» ";
+    }
+    header:after {
+        content: "www.SchedulerPro.com";
+    }
+    header:before {
+        display: block;
+        content: "Thank you for printing our content at www.smashing-winery.com. Please check back soon for new offers on delicious wine from our winery.";
+        margin-bottom: 10px;
+        border: 1px solid #bbb;
+        padding: 3px 5px;
+        font-style: italic;
+    }
+    img {
+        border: 0;
+    }
+
+    header {
+        margin-bottom: 40px;
+    }
+    
+}

@@ -19,7 +19,7 @@
 
 include_once '../objects/Resource.php';
 
-
+echo 'File included';
 
 //Database Variables
 $resc = new Resource($db);

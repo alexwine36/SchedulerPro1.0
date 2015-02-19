@@ -13,38 +13,45 @@ include_once 'header.php';
 
 //Get database connection
 include_once 'includes/database.php';
+//include_once 'includes/login_database.php';
 
 $database = new Database();
 $db = $database->getConnection();
 // if the form was submitted
 if ($_POST) {
+    if ($_POST['password'] == $_POST['password2']) {
+        // instantiate product object
+        include_once 'objects/Users.php';
+        $users = new Users($db);
 
-    // instantiate product object
-    include_once 'objects/Users.php';
-    $users = new Users($db);
+        // set product property values
+        $users->username = $_POST['username'];
+        $users->password = $_POST['password'];
+        $users->user_type = $_POST['adminpassword'];
+        $users->user_email = $_POST['email'];
 
-    // set product property values
-    $users->username = $_POST['username'];
-    $users->password = $_POST['password'];
-    $users->user_type = $_POST['adminpassword'];
-    $users->user_email = $_POST['email'];
+        // create the product
+        if ($users->create()) {
+            echo "<div class=\"alert alert-success alert-dismissable\">";
+            echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
+            echo "User was created.";
+            echo "<div class='right-button-margin'>";
+            echo "<a href='login.php' class='btn btn-default pull-right'>Login</a>";
+            echo "</div>";
+            echo "</div>";
+        }
 
-    // create the product
-    if ($users->create()) {
-        echo "<div class=\"alert alert-success alert-dismissable\">";
-        echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
-        echo "User was created.";
-        echo "<div class='right-button-margin'>";
-        echo "<a href='login.php' class='btn btn-default pull-right'>Login</a>";
-        echo "</div>";
-        echo "</div>";
-    }
-
-    // if unable to create the product, tell the user
-    else {
+        // if unable to create the product, tell the user
+        else {
+            echo "<div class=\"alert alert-danger alert-dismissable\">";
+            echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
+            echo "Unable to create user.";
+            echo "</div>";
+        }
+    } else {
         echo "<div class=\"alert alert-danger alert-dismissable\">";
         echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
-        echo "Unable to create user.";
+        echo "Passwords need to match.";
         echo "</div>";
     }
 }

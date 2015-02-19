@@ -24,6 +24,7 @@ $page_title = "Login";
 
 
 include_once 'includes/database.php';
+//include_once 'includes/login_database.php';
 include_once 'header.php';
 //include_once 'objects/Users.php';
 // get database connection

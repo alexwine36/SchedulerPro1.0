@@ -17,26 +17,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//Include Database Files
-include_once '../objects/ScheduleRecurring.php';
+class Database {
 
-echo 'File Included';
+    //specify database credentials
+    private $host = 'localhost';
+    private $db_name = 'SchedulerProDB';
+    private $username = 'login';
+    private $password = 'login';
+    public $conn;
 
-//Database Variables
-$schrec = new ScheduleRecurring($db);
+    //get database connection
+    public function getConnection() {
+        $this->conn = null;
 
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            echo 'Database Success';
+        } catch (PDOException $ex) {
+            echo 'Connection error: ' . $ex->getMessage();
+        }
+        return $this->conn;
+    }
 
-$stmt = $schrec->read();
-
-while ($row_schrec = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    extract($row_schrec);
-    //echo "<br> Row extracted: $sch_rec_name ";
-    $txt .= "<item>"
-            . "<name>$sch_rec_name"
-            . "</name>"
-            . "<description>ScheduleRecurring.php"
-            . "</description>"
-            . "<id>$sch_rec_id"
-            . "</id>"
-            . "</item>";
 }
+
+?>

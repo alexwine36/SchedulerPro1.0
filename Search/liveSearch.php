@@ -7,7 +7,7 @@
  */
 
 $xmlDoc = new DOMDocument();
-$xmlDoc->load("ls.xml");
+$xmlDoc->load("Search/ls.xml");
 
 $x = $xmlDoc->getElementsByTagName('item');
 

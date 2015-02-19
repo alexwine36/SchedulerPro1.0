@@ -17,9 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-include("includes/connection.php");
-include("includes/icalendar.php");
+ini_set('auto_detect_line_endings',TRUE);
+?>
+<?php
+//$page_title = 'Update .ics';
+//include_once 'header.php';
+//include("includes/database.php");
+//include("includes/icalendar.php");
 //$records = mysql_num_rows(mysql_query("select * from  events"));
 //if ($_POST['stage'] == 1) {
 
@@ -59,20 +63,80 @@ for ($x = 0; $x < $arrayLength; $x++) {
             //print_r(explode(":", $dataString));
             echo $dataString;
             $event = array();
+            //Start New (x)
         }
         if (stristr($dataString, "end:vevent")) {
             foreach ($event as $t => $t_value) {
                 echo '<br>';
+                
+                $t_value = trim($t_value);
+                //$t_value = str_replace($t_value, $event, $ds)
+                
+                //echo nl2br($t_value);
                 echo 'Key: '
                 . $t . ", Value: "
                 . $t_value;
                 echo '<br>';
+                //Commit each
+                //$t_value = str_replace("\n", ' ', $t_value);
+                //str_replace("\r", ' ', $t_value);
+                //str_replace("\r\n", ' ', $t_value);
+                
+                if ($t == 'description' or $t == 'categories') {
+
+
+                    $expSt1 = explode("\n", $t_value);
+                    //$expSt2 = explode("\n", $t_value);
+                    if (is_array($expSt1)) {
+                        echo implode(' ', $expSt1) . "<br>";
+                    }
+                    //echo implode(' -- ', $expSt2) . "<br>";
+                    /* if (is_array($expSt1)) {
+                      foreach ($expSt1 as $c) {
+                      $atPos = stristr('@', $c);
+                      $numPos = is_numeric($c);
+                      echo $c;
+                      if ($atPos == TRUE) {
+                      echo 'Email: '
+                      . $c;
+                      } elseif ($numPos == TRUE) {
+                      echo 'Phone: '
+                      . $c;
+                      }
+                      }
+                      }
+                      if (is_array($expSt2)) {
+                      echo 'Carriage Array: True';
+                      foreach ($expSt2 as $d) {
+                      echo '<br>Foreach Running...<br>';
+                      $atPos = strpos('@', $d);
+                      echo $atPos;
+                      $numPos = is_numeric($d);
+                      echo $numPos;
+                      echo $d;
+                      echo '<br>';
+                      //echo $numPos;
+
+                      if ($atPos > 0) {
+                      echo 'Email: '
+                      . $d;
+                      } elseif (numPos == TRUE) {
+
+                      echo 'Phone: ';
+                      echo $d;
+                      }
+                      }
+                      }
+                     * 
+                     */
+                }
             }
             echo $dataString;
             unset($event);
         }
         switch ($ds['0']) {
             case 'DESCRIPTION':
+                $ds['1'] = str_replace('n', ' ', $ds['1']);
                 echo $ds['1'];
                 $event['description'] = $ds['1'];
                 break;
@@ -144,12 +208,9 @@ for ($x = 0; $x < $arrayLength; $x++) {
   }
  * 
  */
-
-$page_title = 'Update .ics';
-include_once 'header.php';
 ?>
 
 <?php
 
-include_once 'footer.php';
+//include_once 'footer.php';
 ?>
