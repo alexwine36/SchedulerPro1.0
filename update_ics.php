@@ -17,9 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-ini_set('auto_detect_line_endings',TRUE);
+ini_set('auto_detect_line_endings', TRUE);
 ?>
 <?php
+
 //$page_title = 'Update .ics';
 //include_once 'header.php';
 //include("includes/database.php");
@@ -68,10 +69,9 @@ for ($x = 0; $x < $arrayLength; $x++) {
         if (stristr($dataString, "end:vevent")) {
             foreach ($event as $t => $t_value) {
                 echo '<br>';
-                
+
                 $t_value = trim($t_value);
                 //$t_value = str_replace($t_value, $event, $ds)
-                
                 //echo nl2br($t_value);
                 echo 'Key: '
                 . $t . ", Value: "
@@ -81,14 +81,27 @@ for ($x = 0; $x < $arrayLength; $x++) {
                 //$t_value = str_replace("\n", ' ', $t_value);
                 //str_replace("\r", ' ', $t_value);
                 //str_replace("\r\n", ' ', $t_value);
-                
+
                 if ($t == 'description' or $t == 'categories') {
 
 
-                    $expSt1 = explode("\n", $t_value);
+                    $expSt1 = explode(" ", $t_value);
+
                     //$expSt2 = explode("\n", $t_value);
                     if (is_array($expSt1)) {
-                        echo implode(' ', $expSt1) . "<br>";
+                        foreach ($expSt1 as $c) {
+                            //echo $c;
+                            echo '<br>';
+                            if (preg_match_all( "/[0-9]/", $c ) >= 7) {
+                                echo 'Number Found: ';
+                                echo $c;
+                            }
+                            if (stristr($c, "@")) {
+                                echo 'Email Found: ';
+                                echo $c;
+                            } 
+                        }
+//echo implode(' ', $expSt1) . "<br>";
                     }
                     //echo implode(' -- ', $expSt2) . "<br>";
                     /* if (is_array($expSt1)) {
@@ -134,9 +147,10 @@ for ($x = 0; $x < $arrayLength; $x++) {
             echo $dataString;
             unset($event);
         }
+
         switch ($ds['0']) {
             case 'DESCRIPTION':
-                $ds['1'] = str_replace('n', ' ', $ds['1']);
+                $ds['1'] = str_replace('\\n', ' ', $ds['1']);
                 echo $ds['1'];
                 $event['description'] = $ds['1'];
                 break;
